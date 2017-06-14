@@ -26,3 +26,4 @@ grunt
 grunt dist
 ```
 
+* Then just open index.html or setup a web server to host the app
