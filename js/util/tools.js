@@ -1,3 +1,25 @@
+/**
+ * Util method that finds an object value by key. Used for deeply nested dot-notation keys.
+ *
+ * @param namespace
+ * @param parent
+ * @return {*}
+ */
+function getValue(namespace, parent) {
+    var parts = namespace.split('.'),
+        current = parent || window;
+    for (var i = 0; i < parts.length; i += 1) {
+        if (current[parts[i]]) {
+            current = current[parts[i]];
+        } else {
+            if (i >= parts.length - 1) {
+                return undefined;
+            }
+        }
+    }
+    return current;
+}
+
 var ajaxloading = {
     show: function (id) {
         if (id) {
@@ -238,28 +260,6 @@ function lookupValue(obj, string) {
         //console.log(obj);
     }
     return returnString;
-}
-
-/**
- * Util method that finds an object value by key. Used for deeply nested dot-notation keys.
- *
- * @param namespace
- * @param parent
- * @return {*}
- */
-function getValue(namespace, parent) {
-    var parts = namespace.split('.'),
-        current = parent || window;
-    for (var i = 0; i < parts.length; i += 1) {
-        if (current[parts[i]]) {
-            current = current[parts[i]];
-        } else {
-            if (i >= parts.length - 1) {
-                return undefined;
-            }
-        }
-    }
-    return current;
 }
 
 var getURLParameter = function (name) {

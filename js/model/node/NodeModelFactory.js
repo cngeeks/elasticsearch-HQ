@@ -61,7 +61,7 @@ function NodeStatsListModelFactory() {
 
             model.url = function () {
                 var sNodes = this.get('selectedNodes');
-                if (sNodes == undefined || sNodes.length === 0) {
+                if (sNodes === undefined || sNodes.length === 0) {
                     return '/_nodes/stats' + urlSuffix;
                 }
                 else {
@@ -93,7 +93,7 @@ function NodeInfoListModelFactory() {
 
             model.url = function () {
                 var sNodes = this.get('selectedNodes');
-                if (sNodes == undefined || sNodes.length === 0) {
+                if (sNodes === undefined || sNodes.length === 0) {
                     return '/_nodes' + urlSuffix;
                 }
                 else {

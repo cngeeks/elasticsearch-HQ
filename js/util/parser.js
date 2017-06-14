@@ -316,6 +316,7 @@ var Parser = (function (scope) {
         },
 
         toJSFunction:function (param, variables) {
+            /*jslint evil: true */
             var f = new Function(param, "with(Parser.values) { return " + this.simplify(variables).toString(true) + "; }");
             return f;
         }
@@ -488,6 +489,8 @@ var Parser = (function (scope) {
             var noperators = 0;
             this.expression = expr;
             this.pos = 0;
+           
+            var token;
 
             while (this.pos < this.expression.length) {
                 if (this.isOperator()) {
@@ -516,7 +519,7 @@ var Parser = (function (scope) {
                     if ((expected & PRIMARY) === 0) {
                         this.error_parsing(this.pos, "unexpected number");
                     }
-                    var token = new Token(TNUMBER, 0, 0, this.tokennumber);
+                    token = new Token(TNUMBER, 0, 0, this.tokennumber);
                     tokenstack.push(token);
 
                     expected = (OPERATOR | RPAREN | COMMA);
@@ -525,7 +528,7 @@ var Parser = (function (scope) {
                     if ((expected & PRIMARY) === 0) {
                         this.error_parsing(this.pos, "unexpected string");
                     }
-                    var token = new Token(TNUMBER, 0, 0, this.tokennumber);
+                    token = new Token(TNUMBER, 0, 0, this.tokennumber);
                     tokenstack.push(token);
 
                     expected = (OPERATOR | RPAREN | COMMA);
@@ -546,7 +549,7 @@ var Parser = (function (scope) {
                 }
                 else if (this.isRightParenth()) {
                     if (expected & NULLARY_CALL) {
-                        var token = new Token(TNUMBER, 0, 0, []);
+                        token = new Token(TNUMBER, 0, 0, []);
                         tokenstack.push(token);
                     }
                     else if ((expected & RPAREN) === 0) {

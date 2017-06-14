@@ -86,4 +86,4 @@ function MappingsModelFactory() {
             return  new MappingsModel();
         }
     }
-};
+}

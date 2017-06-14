@@ -21,7 +21,7 @@ var nodeRoute = {};
 nodeRoute.selectedDiagnoseNodeIDs = [];
 
 nodeRoute.selectDiagnoseNodes = function (nodeList) {
-    if (nodeList != undefined && nodeList.length > 0) {
+    if (nodeList !== undefined && nodeList.length > 0) {
         // pull the first X nodes for selection
         var maxNodes = settingsModel.get('settings').nodeDiagnosticsMax;
         for (var i = 0; i < maxNodes; i++) {
